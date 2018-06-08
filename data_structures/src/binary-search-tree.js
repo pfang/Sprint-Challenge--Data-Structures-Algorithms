@@ -12,13 +12,24 @@ class BinarySearchTree {
   }
 
   breadthFirstForEach(cb) {
-    let nodes = [this];
-    for (let i = 0; i < nodes.length; i++) {
-      if(nodes[i].left) nodes.push(nodes[i].left);
-      if(nodes[i].right) nodes.push(nodes[i].right);
-      cb(nodes[i].value);
+    const n = [];
+    n.push(this);
+
+    while (n.length) {
+      const currentNode = n.shift();
+
+      if (currentNode.left) {
+        n.push(currentNode.left);
+      }
+
+      if (currentNode.right) {
+        n.push(currentNode.right);
+      }
+
+      cb(currentNode.value);
     }
   }
+
 
   insert(value) {
     const newNode = new BinarySearchTree(value);
